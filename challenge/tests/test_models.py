@@ -61,10 +61,6 @@ class TestFood(TestCase):
 
 
 class TestPerson(TestCase):
-    def setUp(self):
-        models.Person.objects.all().delete()
-        models.PersonTag.objects.all().delete()
-
     @staticmethod
     def createPerson(person_id=DEF_PERSON_ID,
                      mongodb_id=DEF_PERSON_MONGODB_ID,
@@ -88,6 +84,7 @@ class TestPerson(TestCase):
                                             registration_date=parser.parse(registration_date))
 
     def test_createPerson(self):
+        models.Person.objects.all().delete()
         person = TestPerson.createPerson()
         self.assertTrue(isinstance(person, models.Person))
         self.assertEqual(DEF_PERSON_ID, person.id)
@@ -107,6 +104,7 @@ class TestPerson(TestCase):
         self.assertEqual(parser.parse(DEF_PERSON_REG_DATE), person.registration_date)
 
     def test_friendRelationship(self):
+        models.Person.objects.all().delete()
         person1 = TestPerson.createPerson(person_id=10)
         person2 = TestPerson.createPerson(person_id=20)
         person3 = TestPerson.createPerson(person_id=30)
@@ -120,6 +118,8 @@ class TestPerson(TestCase):
         self.assertFalse(person1 in person2.friends.all())
 
     def test_foodRelationship(self):
+        models.Person.objects.all().delete()
+        models.Food.objects.all().delete()
         apple = TestFood.createFood(name='Apple', food_type=models.FOOD_TYPE_FRUIT)
         banana = TestFood.createFood(name='Banana', food_type=models.FOOD_TYPE_FRUIT)
         lettuce = TestFood.createFood(name='Lettuce', food_type=models.FOOD_TYPE_VEGETABLE)
@@ -138,12 +138,16 @@ class TestPerson(TestCase):
         self.assertEqual({person2}, set(lettuce.people.all()))
 
     def test_companyRelationship(self):
+        models.Person.objects.all().delete()
+        models.Company.objects.all().delete()
         person = TestPerson.createPerson(person_id=4)
         company = TestCompany.createCompany()
         company.employees.add(person)
         self.assertEqual(company, person.employer)
 
     def test_tagRelationship(self):
+        models.Person.objects.all().delete()
+        models.PersonTag.objects.all().delete()
         person1 = TestPerson.createPerson(person_id=5)
         person2 = TestPerson.createPerson(person_id=6)
         tag1 = models.PersonTag.objects.create(name='skiing')
