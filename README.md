@@ -51,12 +51,12 @@ Where:
  
  E.g. http://127.0.0.1:8000/api/common_friends/1/2?eye_colour=BR&is_alive=True
  
- Note that you can query friends in common of any number of people.  So for example to query the friends in common of 
+ Note that you can query the friends in common of any number of people.  So for example to query the friends in common of 
  people with ID's 3, 77 & 100 you would do this:
  
  http://127.0.0.1:8000/api/common_friends/3/77/100?eye_colour=BR&is_alive=True
  
- In addition you can query any field available on a Person.  So if you wanted to find all friends in 
+ In addition you can query any field available on a Person object.  So if you wanted to find all friends in 
  common between Henderson Petty and Claire Kline who were female:
  
  http://127.0.0.1:8000/api/common_friends/Henderson%20Petty/Claire%20Kline?gender=F
@@ -68,3 +68,5 @@ http://127.0.0.1:8000/api/favourite_food/<person_id>
 ```
   
 Where _<person_id>_ can be either the numeric ID (index) or case-sensitive name (spaces represented as %20) of the person  
+
+E.g. http://127.0.0.1:8000/api/favourite_food/2
