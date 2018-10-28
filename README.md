@@ -1,4 +1,11 @@
 # Paranuara Challenge Solution
+## Prerequisites
+You are running the solution on Linux with Python 3 installed, and a Python 3 virtualenv created and activated:
+E.g.
+```
+virtualenv -p python3 solution
+. ./solution/bin/activate
+```
 
 ## To install
 This code depends on version 2.x of Django.  To install requirements and also import
