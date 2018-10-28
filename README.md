@@ -37,8 +37,8 @@ Enter a url in the following format:
 http://127.0.0.1:8000/api/common_friends/<person1_id>/<person2_id>?eye_colour=[BR|BL|GR|GY|AL|OT]&is_alive=[True|False]
 ```
 Where:
- * _<person1_id>_ and <person2_id> can be either the numeric ID (index) or case-sensitive name (spaces represented as %20) of the person
- * The eye colour is:
+ * _<person1_id>_ and _<person2_id>_ can be either the numeric ID (index) or case-sensitive name (spaces represented as %20) of the person
+ * The eye_colour codes are:
  
  | Code  | Colour |
  | ----- | ------ |
@@ -67,4 +67,4 @@ Enter a url in the following format:
 http://127.0.0.1:8000/api/favourite_food/<person_id>
 ```
   
-Where <person_id> can be either the numeric ID (index) or case-sensitive name (spaces represented as %20) of the person  
+Where _<person_id>_ can be either the numeric ID (index) or case-sensitive name (spaces represented as %20) of the person  
