@@ -10,15 +10,17 @@ Note that as SQLITE was used to minimise configuration requirements the data imp
 
 ## To run all unit tests
 Before running the project for the first time, you can run the entire suite of unit
-tests to verify the solution installed correctly:
+tests to verify the solution is installed correctly:
 ```
 make test
 ```
 
 ## To run the solution
+The solution uses Django to provide a REST api.  To fire up Django's build in server:
 ```
 make run
 ```
+You can then use the URLs described below from a web-browser, cURL etc to interact with the solution
 
 ### To view all employees of a supplied company
 Enter a url in the following format:
