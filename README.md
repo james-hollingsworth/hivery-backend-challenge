@@ -1,18 +1,68 @@
-# Paranuara Challenge
-Paranuara is a class-m planet. Those types of planets can support human life, for that reason the president of the Checktoporov decides to send some people to colonise this new planet and
-reduce the number of people in their own country. After 10 years, the new president wants to know how the new colony is growing, and wants some information about his citizens. Hence he hired you to build a rest API to provide the desired information.
+# Paranuara Challenge Solution
 
-The government from Paranuara will provide you two json files (located at resource folder) which will provide information about all the citizens in Paranuara (name, age, friends list, fruits and vegetables they like to eat...) and all founded companies on that planet. 
-Unfortunately, the systems are not that evolved yet, thus you need to clean and organise the data before use. 
-For example, instead of providing a list of fruits and vegetables their citizens like, they are providing a list of favourite food, and you will need to split that list (please, check below the options for fruits and vegetables).
+## To install
+This code depends on version 2.x of Django.  To install requirements and also import
+the datafiles associated with the challenge run:
+```
+make install
+```
+Note that as SQLITE was used to minimise configuration requirements the data import takes several minutes
 
-## New Features
-Your API must provides these end points:
-- Given a company, the API needs to return all their employees. Provide the appropriate solution if the company does not have any employees.
-- Given 2 people, provide their information (Name, Age, Address, phone) and the list of their friends in common which have brown eyes and are still alive.
-- Given 1 people, provide a list of fruits and vegetables they like. This endpoint must respect this interface for the output: `{"username": "Ahi", "age": "30", "fruits": ["banana", "apple"], "vegetables": ["beetroot", "lettuce"]}`
+## To run all unit tests
+Before running the project for the first time, you can run the entire suite of unit
+tests to verify the solution installed correctly:
+```
+make test
+```
 
-## Delivery
-To deliver your system, you need to send the link on GitHub. Your solution must provide tasks to install dependencies, build the system and run. Solutions that does not fit this criteria **will not be accepted** as a solution. Assume that we have already installed in our environment Java, Ruby, Node.js, Python, MySQL, MongoDB and Redis; any other technologies required must be installed in the install dependencies task. Moreover well tested and designed systems are one of the main criteria of this assessement 
+## To run the solution
+```
+make run
+```
 
+### To view all employees of a supplied company
+Enter a url in the following format:
+```
+http://127.0.0.1:8000/api/company_employees/<company_id>
+```
+Where _<company_id>_ can be either the numeric ID (index) or case-sensitive name (spaces represented as %20) of the company
 
+E.g. http://127.0.0.1:8000/api/company_employees/PERMADYNE
+
+### To view the friends with brown eyes that are alive that are friends of two people
+Enter a url in the following format:
+```
+http://127.0.0.1:8000/api/common_friends/<person1_id>/<person2_id>?eye_colour=[BR|BL|GR|GY|AL|OT]&is_alive=[True|False]
+```
+Where:
+ * _<person1_id>_ and <person2_id> can be either the numeric ID (index) or case-sensitive name (spaces represented as %20) of the person
+ * The eye colour is:
+ 
+ | Code  | Colour |
+ | ----- | ------ |
+ | BR    | Brown  |
+ | BL    | Blue   |
+ | GR    | Green  |
+ | GY    | Grey   |
+ | AL    | Albino |
+ | OT    | Other  |
+ 
+ E.g. http://127.0.0.1:8000/api/common_friends/1/2?eye_colour=BR&is_alive=True
+ 
+ Note that you can query friends in common of any number of people.  So for example to query the friends in common of 
+ people with ID's 3, 77 & 100 you would do this:
+ 
+ http://127.0.0.1:8000/api/common_friends/3/77/100?eye_colour=BR&is_alive=True
+ 
+ In addition you can query any field available on a Person.  So if you wanted to find all friends in 
+ common between Henderson Petty and Claire Kline who were female:
+ 
+ http://127.0.0.1:8000/api/common_friends/Henderson%20Petty/Claire%20Kline?gender=F
+ 
+### To view the favourite fruit and vegetables of a person
+Enter a url in the following format:
+```
+http://127.0.0.1:8000/api/favourite_food/<person_id>
+```
+  
+Where <person_id> can be either the numeric ID (index) or case-sensitive name (spaces represented as %20) of the person  
