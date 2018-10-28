@@ -152,7 +152,7 @@ class TestPerson(TestCase):
         person2 = TestPerson.createPerson(person_id=6)
         tag1 = models.PersonTag.objects.create(name='skiing')
         tag2 = models.PersonTag.objects.create(name='gigs')
-        tag3 = models.PersonTag.objects.create(name='skiing')
+        tag3 = models.PersonTag.objects.create(name='tennis')
 
         person1.tags.add(tag1)
         person1.tags.add(tag2)
